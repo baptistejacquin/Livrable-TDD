@@ -23,9 +23,19 @@ class DonationFee
 
     public function getCommissionAmount()
     {
-        $donation=$this->donation;
-        $commition=$this->commissionPercentage;
-        $result = $donation*$commition /100;
+        $donation = $this->donation;
+        $commition = $this->commissionPercentage;
+        $result = $donation * $commition / 100;
+
+        return $result;
+    }
+
+    public function getAmountCollected()
+    {
+        $donation = $this->donation;
+        $commition = $this->commissionPercentage;
+        $resultCommition = $donation * $commition / 100;
+        $result = $donation - $resultCommition;
 
         return $result;
     }

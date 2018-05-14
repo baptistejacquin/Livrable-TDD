@@ -17,13 +17,13 @@ class DonationFeeTest extends TestCase
     public function testCommissionAmountGetter()
     {
         // Etant donné une donation de 100 et commission de 10%
-        $donationFees = new DonationFee(100, 10);
+        $donationFees = new DonationFee(3700, 30);
 
         // Lorsque qu'on appel la méthode getCommissionAmount()
         $actual = $donationFees->getCommissionAmount();
 
         // Alors la Valeur de la commission doit être de 10
-        $expected = 10;
+        $expected = 1110;
         $this->assertEquals($expected, $actual);
     }
 }

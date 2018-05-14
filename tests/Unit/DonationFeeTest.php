@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\DonationFee;
+use Mockery\Exception;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -38,5 +39,15 @@ class DonationFeeTest extends TestCase
         // Alors  le montant perçu par le porteur du projet est 2590
         $expected = 2590;
         $this->assertEquals($expected, $actual);
+    }
+
+    public function testExeptionSup30(){
+        $this->expectException(Exception::class);
+        new DonationFee(3700, 31);
+    }
+
+    public function testExeptionInf0(){
+        $this->expectException(Exception::class);
+        new DonationFee(3700, -2);
     }
 }

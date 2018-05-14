@@ -9,6 +9,8 @@
 namespace App;
 
 
+use Mockery\Exception;
+
 class DonationFee
 {
 
@@ -17,6 +19,9 @@ class DonationFee
 
     public function __construct($donation, $commissionPercentage)
     {
+        if ($commissionPercentage< 0 ||$commissionPercentage > 30){
+            throw new Exception('abuse pas avec la comm');
+        }
         $this->donation = $donation;
         $this->commissionPercentage = $commissionPercentage;
     }

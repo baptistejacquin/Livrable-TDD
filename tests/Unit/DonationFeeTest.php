@@ -32,10 +32,10 @@ class DonationFeeTest extends TestCase
         // Etant donné une donation de 3700 et commission de 30%
         $donationFees = new DonationFee(3700, 30);
 
-        // Lorsque qu'on appel la méthode getCommissionAmount()
+        // Lorsque qu'on appel la méthode getAmountCollected()
         $actual = $donationFees->getAmountCollected();
 
-        // Alors la Valeur de la commission doit être de 1110
+        // Alors  le montant perçu par le porteur du projet est 2590
         $expected = 2590;
         $this->assertEquals($expected, $actual);
     }

@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\DonationFee;
+use ClassesWithParents\D;
 use Mockery\Exception;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -50,4 +51,16 @@ class DonationFeeTest extends TestCase
         $this->expectException(Exception::class);
         new DonationFee(3700, -2);
     }
+
+    public function testEntierPositif(){
+        $this->expectException(Exception::class);
+        new DonationFee(250.2,10);
+
+    }
+
+    public function testEntierPositifInf100() {
+        $this->expectException(Exception::class);
+        new DonationFee(99,10);
+    }
+    
 }

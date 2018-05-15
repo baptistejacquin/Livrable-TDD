@@ -19,8 +19,10 @@ class DonationFee
 
     public function __construct($donation, $commissionPercentage)
     {
-        if ($commissionPercentage< 0 ||$commissionPercentage > 30){
+        if ($commissionPercentage < 0 || $commissionPercentage > 30){
             throw new Exception('abuse pas avec la comm');
+        }elseif (is_int($donation)=== false||$donation< 100){
+            throw new Exception('abuse pas avec la donation');
         }
         $this->donation = $donation;
         $this->commissionPercentage = $commissionPercentage;

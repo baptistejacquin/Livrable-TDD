@@ -24,8 +24,8 @@ class DonationFeeTest extends TestCase
         // Lorsque qu'on appel la méthode getCommissionAmount()
         $actual = $donationFees->getCommissionAmount();
 
-        // Alors la Valeur de la commission doit être de 500
-        $expected = 500;
+        // Alors la Valeur de la commission doit être de 1110
+        $expected = 1110;
         $this->assertEquals($expected, $actual);
     }
 
@@ -85,7 +85,7 @@ public function testCommissionAmountGetter2()
         $actual = $donationFees->​getFixedAndCommissionFeeAmount();
 
         // Alors la Valeur de la commission et des frais fixe doivent être de 1160
-        $expected = 1110+50;
+        $expected = 500;
         $this->assertEquals($expected, $actual);
     }
 
@@ -94,10 +94,24 @@ public function testCommissionAmountGetter2()
         $donationFees = new DonationFee(3700, 30);
 
         // Lorsque qu'on appel la méthode ​getFixedAndCommissionFeeAmount()
-        $actual = $donationFees->getCommissionAmount();
+        $actual = $donationFees->​getFixedAndCommissionFeeAmount();
 
         // Alors la Valeur de la commission et des frais fixe doivent être de 500
         $expected = 500;
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testGetSummary(){
+        $donationFees = new DonationFee(3700, 30);
+        $actual = $donationFees->getSummary();
+        $expected = array(
+            "donation"=>3700,
+            "fixedFee"=>50,
+            "commission"=>1110,
+            "fixedAndCommission"=>500,
+            "amountCollected"=>3200
+        );
+
         $this->assertEquals($expected, $actual);
     }
 

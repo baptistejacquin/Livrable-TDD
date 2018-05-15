@@ -33,11 +33,9 @@ class DonationFee
     {
         $donation = $this->donation;
         $commition = $this->commissionPercentage;
-        $result = $donation * $commition / 100;
-        if ($result >500){
-            $result =500;
-        }
-        return $result;
+        $commitionAmount = $donation * $commition / 100;
+
+        return $commitionAmount;
     }
 
     public function getAmountCollected()
@@ -48,9 +46,9 @@ class DonationFee
         if ($resultCommition >500){
             $resultCommition =500;
         }
-        $result = $donation - $resultCommition;
+        $amountCollected = $donation - $resultCommition;
 
-        return $result;
+        return $amountCollected;
     }
 
     public function ​getFixedAndCommissionFeeAmount(){
@@ -59,6 +57,21 @@ class DonationFee
         $commition = $this->commissionPercentage;
         $resultCommition = $donation * $commition / 100;
         $result = $resultCommition +$priceFix;
+
+        if ($result >500){
+            $result =500;
+        }
         return $result;
+    }
+
+    public function getSummary(){
+        $tab = array(
+            "donation"=>$this->donation,
+            "fixedFee"=>self::PRICEFIX,
+            "commission"=>$this->getCommissionAmount(),
+            "fixedAndCommission"=>$this->​getFixedAndCommissionFeeAmount(),
+            "amountCollected"=>$this->getAmountCollected()
+        );
+        return $tab;
     }
 }

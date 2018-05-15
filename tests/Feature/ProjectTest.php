@@ -18,4 +18,10 @@ class ProjectTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function testLookForH1(){
+        $response = $this->get('/project');
+
+        $response->assertSee("<h1> Liste des projets </h1>");
+    }
 }

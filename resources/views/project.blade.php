@@ -70,7 +70,7 @@
 
     <div class="content">
         <div class="title m-b-md">
-            <h1> Test de l'espace </h1>
+            <h1> Liste des projets </h1>
         </div>
     </div>
 </div>

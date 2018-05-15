@@ -34,7 +34,9 @@ class DonationFee
         $donation = $this->donation;
         $commition = $this->commissionPercentage;
         $result = $donation * $commition / 100;
-
+        if ($result >500){
+            $result =500;
+        }
         return $result;
     }
 
@@ -43,6 +45,9 @@ class DonationFee
         $donation = $this->donation;
         $commition = $this->commissionPercentage;
         $resultCommition = $donation * $commition / 100;
+        if ($resultCommition >500){
+            $resultCommition =500;
+        }
         $result = $donation - $resultCommition;
 
         return $result;

@@ -84,7 +84,7 @@ public function testCommissionAmountGetter2()
         // Lorsque qu'on appel la méthode ​getFixedAndCommissionFeeAmount()
         $actual = $donationFees->​getFixedAndCommissionFeeAmount();
 
-        // Alors la Valeur de la commission et des frais fixe doivent être de 1160
+        // Alors la Valeur de la commission et des frais fixe doivent être de 500
         $expected = 500;
         $this->assertEquals($expected, $actual);
     }

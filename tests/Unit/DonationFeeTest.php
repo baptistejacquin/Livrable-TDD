@@ -62,5 +62,4 @@ class DonationFeeTest extends TestCase
         $this->expectException(Exception::class);
         new DonationFee(99,10);
     }
-    
 }

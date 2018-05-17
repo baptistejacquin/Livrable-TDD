@@ -1,78 +1,20 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends("template")
 
-    <title>Laravel</title>
+@section("title")
+    Liste des projets
+@endsection
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-    <!-- Styles -->
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 100;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 84px;
-        }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
-</head>
-<body>
-
-<div class="flex-center position-ref full-height">
-
-    <div class="content">
-        <div class="title m-b-md">
-            <h1> Liste des projets </h1>
+@section('liste')
+    <div>
+        <div class="content projectList">
+            <table class="table-striped col-md-12 table-hover">
+                @foreach($projects as $project)
+                    <tr>
+                        <td><img src="image/2.-Smart-Ideas.png" height="20%"></td><td><h2>{{$project->title}}</h2></td><td><h2>{{$project->author}}</h2></td><td><h3>{{$project->description}}</h3></td> <td><h5><a href="/project/{{$project->id}}">Détail</a></h5></td>
+                    </tr>
+                    @endforeach
+            </table>
+            <br>
         </div>
     </div>
-</div>
-</body>
-</html>
+@endsection

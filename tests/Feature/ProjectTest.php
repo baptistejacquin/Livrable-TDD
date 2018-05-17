@@ -9,6 +9,8 @@
 namespace Tests\Feature;
 
 
+use App\Projet;
+use App\User;
 use Tests\TestCase;
 
 class ProjectTest extends TestCase
@@ -22,7 +24,18 @@ class ProjectTest extends TestCase
     public function testLookForH1(){
         $response = $this->get('/project');
 
-        $response->assertSee("<h1> Liste des projets </h1>");
+        $response->assertSee(" Liste des projets");
         
     }
+    public function testNameProject(){
+        $response = $this->get('/project');
+
+        $response->assertSee("Baptiste");
+
+    }
+
+//    public function testFactory(){
+//        $factory = factory(Projet::class, 10)->make();
+//        dump($factory);
+//    }
 }

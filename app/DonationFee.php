@@ -42,7 +42,7 @@ class DonationFee
     {
         $donation = $this->donation;
         $commition = $this->commissionPercentage;
-        $resultCommition = $donation * $commition / 100;
+        $resultCommition = ($donation * $commition / 100) + self::PRICEFIX;
         if ($resultCommition >500){
             $resultCommition =500;
         }

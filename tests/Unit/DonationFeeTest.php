@@ -42,7 +42,7 @@ public function testCommissionAmountGetter2()
         $this->assertEquals($expected, $actual);
     }
 
-    public function testGetAmountCollected()
+    public function testGetAmountCollectedWithMaxComm()
     {
         // Etant donné une donation de 3700 et commission de 30%
         $donationFees = new DonationFee(3700, 30);
@@ -52,6 +52,19 @@ public function testCommissionAmountGetter2()
 
         // Alors  le montant perçu par le porteur du projet est 3200
         $expected = 3200;
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testGetAmountCollected()
+    {
+        // Etant donné une donation de 200 et commission de 1%
+        $donationFees = new DonationFee(400, 1);
+
+        // Lorsque qu'on appel la méthode getAmountCollected()
+        $actual = $donationFees->getAmountCollected();
+
+        // Alors  le montant perçu par le porteur du projet est 3200
+        $expected = 400 - ((400)/100 +50) ;
         $this->assertEquals($expected, $actual);
     }
 

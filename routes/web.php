@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/project', function () {
-    return view('project');
-});
+Route::get('/project','ProjectController@index')->name("project");
+Route::get('/project/{id}','ProjectController@detail')->name("projectDetail");
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

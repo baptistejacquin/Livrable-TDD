@@ -15,27 +15,36 @@ use Tests\TestCase;
 
 class ProjectTest extends TestCase
 {
-    public function testStatus(){
+    use \Illuminate\Foundation\Testing\DatabaseMigrations;
+
+    public function testStatus()
+    {
         $response = $this->get('/project');
 
         $response->assertStatus(200);
     }
 
-    public function testLookForH1(){
+    public function testLookForH1()
+    {
         $response = $this->get('/project');
 
         $response->assertSee(" Liste des projets");
-        
+
     }
     public function testNameProject(){
-        $response = $this->get('/project');
-
-        $response->assertSee("Baptiste");
-
+        factory(Projet::class, 10)->create();
+        $projet = Projet::all()->random();
+        $url = '/project';
+        $response = $this->get($url);
+        $response->assertSee($projet->title);
     }
 
-//    public function testFactory(){
-//        $factory = factory(Projet::class, 10)->make();
-//        dump($factory);
-//    }
+    public function testProjectNameDetail()
+    {
+        factory(Projet::class, 10)->create();
+        $projet = Projet::all()->random();
+        $url = '/project/' . $projet->id;
+        $response = $this->get($url);
+        $response->assertSee($projet->title);
+    }
 }

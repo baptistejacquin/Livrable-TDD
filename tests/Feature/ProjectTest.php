@@ -12,6 +12,7 @@ namespace Tests\Feature;
 use App\Projet;
 use App\User;
 use Tests\TestCase;
+use Mockery\Exception;
 
 class ProjectTest extends TestCase
 {
@@ -62,5 +63,10 @@ class ProjectTest extends TestCase
         $response->assertStatus(200);
         $projet = Projet::all()->first();
         $this->assertEquals($projet->user_id,$user->id);
+    }
+
+    public function testPostWithOutLog(){
+        $this->expectException(Exception::class);
+        $response = $this->post('/create',["title"=>"test","author"=>"test","description"=>"test","user_id"=>1]);
     }
 }

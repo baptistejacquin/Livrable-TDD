@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Projet;
+use Mockery\Exception;
 
 class ProjectController
 {
@@ -23,11 +24,19 @@ class ProjectController
         return view("projectDetail", compact("detail"));
     }
     public function create(){
-        $newProject= new Projet;
-        $newProject->title = "test";
-        $newProject->author = "test";
-        $newProject->description ="test";
-        $newProject->user_id = 1;
-        $newProject->save();
+        $user =\Auth::user();
+//        dd($user->can('create', Projet::class));
+        try {
+            if ($user->can('create', Projet::class)){
+                $newProject = new Projet();
+                $newProject->title = "test";
+                $newProject->author = "test";
+                $newProject->description ="test";
+                $newProject->user_id = 1;
+                $newProject->save();
+            }
+        } catch (\Throwable $throwable){
+         throw new Exception("nope");
+        }
     }
 }

@@ -54,4 +54,13 @@ class ProjectTest extends TestCase
         $response = $this->get($url);
         $response->assertSee($projet->title);
     }
+
+    public function testAuth(){
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)
+            ->post('/create',["title"=>"test","author"=>"test","description"=>"test","user_id"=>$user->id]);
+        $response->assertStatus(200);
+        $projet = Projet::all()->first();
+        $this->assertEquals($projet->user_id,$user->id);
+    }
 }

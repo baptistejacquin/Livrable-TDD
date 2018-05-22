@@ -22,4 +22,12 @@ class ProjectController
         $detail = Projet::where("id",$id)->get()->first();
         return view("projectDetail", compact("detail"));
     }
+    public function create(){
+        $newProject= new Projet;
+        $newProject->title = "test";
+        $newProject->author = "test";
+        $newProject->description ="test";
+        $newProject->user_id = 1;
+        $newProject->save();
+    }
 }

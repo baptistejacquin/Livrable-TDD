@@ -18,6 +18,7 @@ class CreateProjetsTable extends Migration
             $table->string('title',60);
             $table->string('author',60);
             $table->longText('description');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

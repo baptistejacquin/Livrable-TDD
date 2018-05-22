@@ -16,8 +16,8 @@
 @endsection
 
 @section("description")
+    <br><br><br>
     <div class="flex-center position-ref ">
-        <br><br>
         <p class="description">{{$detail->description}}</p>
     </div>
 @endsection

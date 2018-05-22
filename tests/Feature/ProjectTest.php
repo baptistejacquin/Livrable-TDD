@@ -39,6 +39,13 @@ class ProjectTest extends TestCase
         $response->assertSee($projet->title);
     }
 
+    public function testRelationModel(){
+        factory(Projet::class)->create();
+        $testedProject = Projet::all()->first();
+        $testedUser = $testedProject->user;
+        $this->assertInstanceOf(User::class, $testedUser);
+    }
+
     public function testProjectNameDetail()
     {
         factory(Projet::class, 10)->create();

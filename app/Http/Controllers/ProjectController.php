@@ -25,7 +25,6 @@ class ProjectController
     }
     public function create(){
         $user =\Auth::user();
-//        dd($user->can('create', Projet::class));
         try {
             if ($user->can('create', Projet::class)){
                 $newProject = new Projet();
@@ -37,6 +36,17 @@ class ProjectController
             }
         } catch (\Throwable $throwable){
          throw new Exception("nope");
+        }
+    }
+
+    public function createView(){
+        $user =\Auth::user();
+        try {
+            if ($user->can('create', Projet::class)){
+                return "test";
+            }
+        } catch (\Throwable $throwable){
+           return redirect()->route("project");
         }
     }
 }

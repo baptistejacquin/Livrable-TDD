@@ -67,6 +67,22 @@ class ProjectTest extends TestCase
 
     public function testPostWithOutLog(){
         $this->expectException(Exception::class);
-        $response = $this->post('/create',["title"=>"test","author"=>"test","description"=>"test","user_id"=>1]);
+        $this->post('/create',["title"=>"test","author"=>"test","description"=>"test","user_id"=>1]);
+    }
+
+    public function testFormWithOutLog(){
+//        $this->expectException(Exception::class);
+        $url ="/createProject";
+        $response = $this->get($url);
+        $response->assertRedirect('/project');
+
+    }
+
+    public function testFormWithLog(){
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)
+            ->get('/createProject');
+        $response->assertStatus(200);
+
     }
 }

@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('/project','ProjectController@index')->name("project");
 Route::get('/project/{id}','ProjectController@detail')->name("projectDetail");
 Route::post("/create",'ProjectController@create')->name("newProject");
+Route::get("/createProject",'ProjectController@createView')->name("newProjectView");
 
 Auth::routes();
 

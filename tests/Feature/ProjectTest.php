@@ -70,14 +70,21 @@ class ProjectTest extends TestCase
         $this->post('/create',["title"=>"test","author"=>"test","description"=>"test","user_id"=>1]);
     }
 
+    public function testPostWithLog(){
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)
+            ->post('/create',["title"=>"test","author"=>"test","description"=>"test","user_id"=>$user->id]);
+        $response->assertStatus(200);
+        $projet = Projet::all()->first();
+        $this->assertEquals($projet->user_id,$user->id);
+    }
+
     public function testFormWithOutLog(){
-//        $this->expectException(Exception::class);
         $url ="/createProject";
         $response = $this->get($url);
         $response->assertRedirect('/project');
 
     }
-
     public function testFormWithLog(){
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)
